@@ -169,7 +169,6 @@ param(
 [Parameter()][string]$Comando,
 [Parameter()][string]$Servidor
 )
-  escreve-log -Texto $Comando -Tipo "COMANDO"; 
   Invoke-command -computername $Servidor {
     param($comando);
     Invoke-Expression $comando;
