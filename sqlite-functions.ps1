@@ -114,3 +114,11 @@ param(
     }
   }
 };
+
+function attach-SQLiteDB {
+[CmdletBinding()] 
+param(
+[string]$Path
+)  
+  dir $Path | %{query-SQLiteTable -SQL "ATTACH DATABASE '$($_.fullname)' AS $($_.basename);"}
+};
