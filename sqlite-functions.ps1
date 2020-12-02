@@ -92,6 +92,7 @@ param(
   $infields=($linhas | gm | ? MemberType -like '*Property*').name;
   $chrFields=$infields | ? {$intFields -notcontains $_} | ? {$nbrFields -notcontains $_};
   create-SQLiteTable  -Name $Name -intFields $intFields -chrFields $chrFields -nbrFields $nbrFields -DBFile $DBFile;
+  $linhas | InsertTo-SQLiteTable -Name $Name -DBFile $DBFile;
 };
 
 function Migrate-SQLiteTable {
