@@ -123,3 +123,12 @@ param(
 )  
   dir $Path | %{query-SQLiteTable -SQL "ATTACH DATABASE '$($_.fullname)' AS $($_.basename);"}
 };
+
+function list-SQLiteDB {
+[CmdletBinding()] 
+param(
+[string]$Schema
+)  
+  if($Schema.length -gt 0){$Schema+='.'};
+  query-SQLiteTable -SQL "SELECT * FROM ${Schema}sqlite_master;" | ? type -in ('table','view') | select Name,sql;
+};
