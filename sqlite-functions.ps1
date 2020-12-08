@@ -43,13 +43,17 @@ query-SQLiteTable -SQL $SQLQuery -DBFile $DBFile;
 
         .EXAMPLE
 
-        create-SQLiteTable -Name "test" -nbrFieds "fieldName1","fieldName2" -intFields "fieldName3" -chrFields "fieldName4";
+        create-SQLiteTable -Name "test" -nbrFields "fieldName1","fieldName2" -intFields "fieldName3" -chrFields "fieldName4";
         Creates a table in memory test with the fields fieldName1,fieldName2,fieldName3 and fieldName4
 
         .EXAMPLE
 
-        create-SQLiteTable -DBFile 'C:\test.db' -Name "test" -nbrFieds "fieldName1","fieldName2" -intFields "fieldName3" -chrFields "fieldName4";
+        create-SQLiteTable -DBFile 'C:\test.db' -Name "test" -nbrFields "fieldName1","fieldName2" -intFields "fieldName3" -chrFields "fieldName4";
         Creates a table on file test.db with name test and fields fieldName1,fieldName2,fieldName3 and fieldName4
+
+        .NOTES
+		Author: Rodrigo Faria
+		Github: https://github.com/rodrigocarfar
 
         .LINK
         https://github.com/rodrigocarfar/PowerShell-usefull/blob/master/sqlite-functions.ps1
@@ -108,13 +112,17 @@ query-SQLiteTable -SQL $SQLQuery -DBFile $DBFile;
 
         .EXAMPLE
 
-        insertRow-SQLiteTable -Name "test" -nbrFieds "fieldName1","fieldName2" -nbrValues 1,2 -chrFields "fieldName4" -chrValues "value for field 4";
+        insertRow-SQLiteTable -Name "test" -nbrFields "fieldName1","fieldName2" -nbrValues 1,2 -chrFields "fieldName4" -chrValues "value for field 4";
         Inserts a row in a table that resides on memory
 
         .EXAMPLE
 
-        insertRow-SQLiteTable -DBFile 'C:\test.db' -Name "test" -nbrFieds "fieldName1","fieldName2" -nbrValues 1,2 -chrFields "fieldName4" -chrValues "value for field 4";
+        insertRow-SQLiteTable -DBFile 'C:\test.db' -Name "test" -nbrFields "fieldName1","fieldName2" -nbrValues 1,2 -chrFields "fieldName4" -chrValues "value for field 4";
         Inserts a row in a table that resides on file.
+
+        .NOTES
+		Author: Rodrigo Faria
+		Github: https://github.com/rodrigocarfar
 
         .LINK
         https://github.com/rodrigocarfar/PowerShell-usefull/blob/master/sqlite-functions.ps1
@@ -204,13 +212,17 @@ query-SQLiteTable -SQL $SQLQuery -DBFile $DBFile;
 
         .EXAMPLE
 
-        updateRow-SQLiteTable -Name "test" -keyFields "fieldName1" -nbrFieds "fieldName1","fieldName2" -nbrValues 1,2 -chrFields "fieldName4" -chrValues "value for field 4";
+        updateRow-SQLiteTable -Name "test" -keyFields "fieldName1" -nbrFields "fieldName1","fieldName2" -nbrValues 1,2 -chrFields "fieldName4" -chrValues "value for field 4";
         Updates a row in a table that resides on memory
 
         .EXAMPLE
 
-        updateRow-SQLiteTable -DBFile 'C:\test.db' -Name "test" -keyFields "fieldName1" -nbrFieds "fieldName1","fieldName2" -nbrValues 1,2 -chrFields "fieldName4" -chrValues "value for field 4";
+        updateRow-SQLiteTable -DBFile 'C:\test.db' -Name "test" -keyFields "fieldName1" -nbrFileds "fieldName1","fieldName2" -nbrValues 1,2 -chrFields "fieldName4" -chrValues "value for field 4";
         Updates a row in a table that resides on file.
+
+        .NOTES
+		Author: Rodrigo Faria
+		Github: https://github.com/rodrigocarfar
 
         .LINK
         https://github.com/rodrigocarfar/PowerShell-usefull/blob/master/sqlite-functions.ps1
@@ -254,6 +266,10 @@ Invoke-SqliteQuery -SQLiteConnection $sqlitecon -Query $SQL;
 
         query-SQLiteTable -DBFile 'C:\test.db' -SQL "select * from test"
         Select all records from test table that resides on file.
+
+        .NOTES
+		Author: Rodrigo Faria
+		Github: https://github.com/rodrigocarfar
 
         .LINK
         https://github.com/rodrigocarfar/PowerShell-usefull/blob/master/sqlite-functions.ps1
@@ -311,6 +327,10 @@ Function insert-SQLiteTable
 
         ps | select id,ProcessName | insert-SQLiteTable -Name "t_ps" -DBFile 'C:\test.db'
         Insert process information into existing t_ps table that resides on file
+
+        .NOTES
+		Author: Rodrigo Faria
+		Github: https://github.com/rodrigocarfar
 
         .LINK
         https://github.com/rodrigocarfar/PowerShell-usefull/blob/master/sqlite-functions.ps1
@@ -370,6 +390,10 @@ Function update-SQLiteTable
 
         ps | select id,ProcessName | update-SQLiteTable -Name "t_ps" -keyFields id -DBFile 'C:\test.db'
         Update ProcessName by the id information of existing t_ps table that resides on file
+
+        .NOTES
+		Author: Rodrigo Faria
+		Github: https://github.com/rodrigocarfar
 
         .LINK
         https://github.com/rodrigocarfar/PowerShell-usefull/blob/master/sqlite-functions.ps1
@@ -431,6 +455,10 @@ param(
         Create an SQLite table t_ps (that resides on file) with 2 columns: ProcessName (String) and id (integer) and
         inserts records listed from ps command.
 
+        .NOTES
+		Author: Rodrigo Faria
+		Github: https://github.com/rodrigocarfar
+
         .LINK
         https://github.com/rodrigocarfar/PowerShell-usefull/blob/master/sqlite-functions.ps1
 
@@ -482,6 +510,10 @@ param(
         Migrate-SQLiteDB -File2Memory -DBFile 'C:\test.db';
         Recover all tables from file to memory.
 
+        .NOTES
+		Author: Rodrigo Faria
+		Github: https://github.com/rodrigocarfar
+
         .LINK
         https://github.com/rodrigocarfar/PowerShell-usefull/blob/master/sqlite-functions.ps1
 
@@ -514,6 +546,10 @@ param(
 
         attach-SQLiteDB -Path 'C:\*.db';
         Attach all files .db from C:\
+
+        .NOTES
+		Author: Rodrigo Faria
+		Github: https://github.com/rodrigocarfar
 
         .LINK
         https://github.com/rodrigocarfar/PowerShell-usefull/blob/master/sqlite-functions.ps1
@@ -548,10 +584,16 @@ param(
         list-SQLiteDB -Schema teste;
         List tables from test schema
 
+        .NOTES
+		Author: Rodrigo Faria
+		Github: https://github.com/rodrigocarfar
+
+        .NOTES
+		Author: Rodrigo Faria
+		Github: https://github.com/rodrigocarfar
+
         .LINK
         https://github.com/rodrigocarfar/PowerShell-usefull/blob/master/sqlite-functions.ps1
 
 #>
 };
-Set-Alias -Name q -Value query-SQLiteTable;
-Set-Alias -Name n -Value New-SQLiteTable
