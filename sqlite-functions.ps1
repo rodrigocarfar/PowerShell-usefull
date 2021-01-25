@@ -597,3 +597,61 @@ param(
 
 #>
 };
+
+function antijoin{
+[CmdletBinding()] 
+param(
+[String]$LTable,
+[String]$RTable,
+[String[]]$LFields,
+[String[]]$LJoinFields,
+[String[]]$RJoinFields
+)
+$SQL="SELECT ";
+$LFields | %{$SQL+="$LTable.$($_),"};
+$SQL=$SQL.trim(',');
+$SQL+=" FROM $LTable WHERE NOT EXISTS( SELECT 1 FROM $RTable WHERE ";
+0..($LJoinFields.count - 1) | %{$SQL+="$RTable.$($RJoinFields[$($_)]) = $LTable.$($LJoinFields[$($_)]) AND "};
+$SQL+=");";
+$SQL=$SQL.Replace(" AND );",");");
+Return($SQL)
+<#
+        .SYNOPSIS
+        List rows from left table that not exists in the right table
+
+        .DESCRIPTION
+        Creates an text sql statement to list rows from left table that not exists in the right table
+
+        .PARAMETER LTable
+        Left table.
+
+        .PARAMETER RTable
+        Right table.
+
+       .PARAMETER LFields
+        Left table fields to be listed.
+
+        .PARAMETER LJoinFields
+        Left table join fields.
+
+        .PARAMETER RJoinFields
+        Left table join fields.
+
+        .EXAMPLE
+
+        antijoin -LTable 'listagem' -RTable 'gruposad' -LFields 'NOME_GRUPO','usuarios' -LJoinFields 'NOME_GRUPO','usuarios' -RJoinFields 'Grupo','samaccountname';
+        List left table fields (NOME_GRUPO and usuarios) based on not matched keys listed in the join fields.  
+
+        .NOTES
+		Author: Rodrigo Faria
+		Github: https://github.com/rodrigocarfar
+
+        .NOTES
+		Author: Rodrigo Faria
+		Github: https://github.com/rodrigocarfar
+
+        .LINK
+        https://github.com/rodrigocarfar/PowerShell-usefull/blob/master/sqlite-functions.ps1
+
+#>
+}
