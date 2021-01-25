@@ -588,10 +588,6 @@ param(
 		Author: Rodrigo Faria
 		Github: https://github.com/rodrigocarfar
 
-        .NOTES
-		Author: Rodrigo Faria
-		Github: https://github.com/rodrigocarfar
-
         .LINK
         https://github.com/rodrigocarfar/PowerShell-usefull/blob/master/sqlite-functions.ps1
 
@@ -641,10 +637,6 @@ Return($SQL)
 
         antijoin -LTable 'listagem' -RTable 'gruposad' -LFields 'NOME_GRUPO','usuarios' -LJoinFields 'NOME_GRUPO','usuarios' -RJoinFields 'Grupo','samaccountname';
         List left table fields (NOME_GRUPO and usuarios) based on not matched keys listed in the join fields.  
-
-        .NOTES
-		Author: Rodrigo Faria
-		Github: https://github.com/rodrigocarfar
 
         .NOTES
 		Author: Rodrigo Faria
